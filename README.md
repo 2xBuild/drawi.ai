@@ -1,4 +1,5 @@
-<img width="3780" height="1890" alt="banner" src="https://github.com/user-attachments/assets/1c3edff6-221c-48c3-a579-76431edee3af" />
+<img width="3780" height="1890" alt="banner" src="https://github.com/user-attachments/assets/fe1b6f1b-a2d1-40ea-9006-a5bd047ec066" />
+
 
 ## Drawi.ai 
 
