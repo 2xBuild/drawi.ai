@@ -7,3 +7,4 @@ export * from "./components/border-beam";
 export * from "./components/magic-card";
 export * from "./components/dot-pattern";
 export { cn } from "./lib/utils";
+

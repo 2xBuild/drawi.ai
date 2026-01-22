@@ -2,27 +2,51 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Brain, Users, Sparkles, Zap, Palette } from "lucide-react";
-import { MagicCard, cn } from "@repo/ui";
+import { Brain, Users, Sparkles, Palette, Pencil, Lightbulb, Share2 } from "lucide-react";
+import { SketchCard, SketchIcon, SketchBadge } from "@/components/sketch-card";
 
 const features = [
   {
     title: "AI-Powered Creation",
     description:
-      "Transform ideas into reality with AI-enhanced drawing and intelligent note-taking.",
+      "Turn ideas into reality with AI-enhanced drawing and intelligent note-taking.",
     icon: Brain,
+    rotation: -1.5,
   },
   {
     title: "Real-Time Collaboration",
     description:
-      "Work seamlessly with your team. Share whiteboards with multiplayer cursors.",
+      "Share boards, video, screens and chat with your team to collaborate in real-time.",
     icon: Users,
+    rotation: 0.8,
   },
   {
     title: "Infinite Canvas",
     description:
-      "No limits on creativity. Zoom, pan, and expand across an infinite workspace.",
+      "Infinite canvas, multiple files, multiple export options. Both cloud sync and local storage.",
     icon: Palette,
+    rotation: -0.5,
+  },
+  {
+    title: "MindMapping & NoteTaking",
+    description:
+      "MindMapping and NoteTaking with AI-powered suggestions and completions.",
+    icon: Pencil,
+    rotation: 1.2,
+  },
+  {
+    title: "Audio, Video & Screen Sharing",
+    description:
+      "Share audio, video and screen with thousands of users in real-time.",
+    icon: Lightbulb,
+    rotation: -1,
+  },
+  {
+    title: "Built for Everyone",
+    description:
+      "Ideal for tutors, professionals, artists, designers, developers, writers and more.",
+    icon: Share2,
+    rotation: 0.6,
   },
 ];
 
@@ -33,45 +57,24 @@ const FeatureCard = ({
   feature: (typeof features)[0];
   index: number;
 }) => {
-  const Icon = feature.icon;
-  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group"
+    <SketchCard
+      rotation={feature.rotation}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      cardClassName="hover:border-[#0098B0]/60 hover:bg-card"
     >
-      <MagicCard
-        className={cn(
-          "h-full bg-card/50 backdrop-blur-sm border-border/50",
-          "hover:border-[#0098B0]/30 transition-all duration-500"
-        )}
-        gradientColor="#0098B0"
-        gradientOpacity={0.15}
-      >
-        <div className="p-5 flex flex-col h-full">
-          {/* Icon and heading in one line */}
-          <div className="flex items-center gap-3 mb-2">
-            <motion.div
-              className="relative w-8 h-8 rounded-lg flex items-center justify-center bg-[#0098B0]/10 shrink-0"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Icon className="w-4 h-4 text-[#0098B0]" />
-            </motion.div>
-            <h3 className="text-base font-semibold text-foreground">
-              {feature.title}
-            </h3>
-          </div>
-          
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {feature.description}
-          </p>
-        </div>
-      </MagicCard>
-    </motion.div>
+      {/* Icon and heading in one line */}
+      <div className="flex items-center gap-3 mb-3">
+        <SketchIcon icon={feature.icon} />
+        <h3 className="text-lg font-eunjin font-semibold text-foreground">
+          {feature.title}
+        </h3>
+      </div>
+
+      <p className="text-muted-foreground text-sm leading-relaxed pl-1">
+        {feature.description}
+      </p>
+    </SketchCard>
   );
 };
 
@@ -80,41 +83,36 @@ export function Features() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="relative w-full py-24 md:py-32 overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#0098B0]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#0098B0]/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section ref={ref} className="relative w-full py-20 md:py-28 overflow-hidden">
+      <div className="container mx-auto px-6 max-w-6xl">
         {/* Section header */}
         <motion.div
-          className="text-center mb-10"
+          className="text-center mb-14"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0098B0]/10 text-[#0098B0] text-sm font-medium"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          <SketchBadge className="font-eunjin">
             <Sparkles className="w-4 h-4" />
             Features
-          </motion.div>
+          </SketchBadge>
+
+          <motion.h2
+            className="mt-6 text-3xl md:text-4xl font-eunjin font-bold text-foreground"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Everything you need to create
+          </motion.h2>
         </motion.div>
 
         {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
         </div>
-
-        
-          
       </div>
     </section>
   );
