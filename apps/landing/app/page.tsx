@@ -1,42 +1,37 @@
-import Image from "next/image";
+"use client";
+
+import { Hero } from "@/components/hero";
+import { Features } from "@/components/features";
+import { Footer } from "@/components/footer";
+import { motion } from "framer-motion";
+import { DotPattern, cn } from "@repo/ui";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-6">
-      <main className="flex w-full max-w-5xl flex-col items-center justify-center">
-        <div className="flex w-full flex-col items-center gap-10 text-center md:flex-row md:items-center md:justify-between md:text-left">
-          <Image
-            src="/drawi-logo.png"
-            alt="Drawi logo"
-            width={220}
-            height={220}
-            priority
-            className="h-[160px] w-[160px] md:h-[220px] md:w-[220px]"
-          />
-          <div className="flex flex-col items-center gap-6 md:items-start">
-            <span className="rounded-full bg-foreground/10 px-4 py-1 text-xs font-eunjin uppercase tracking-wide text-foreground">
-              Coming soon
-            </span>
-            <h1 className="text-2xl font-eunjin text-foreground md:text-5xl">
-              a next-gen ai-powered whiteboard with everything you need.
-            </h1>
-            <div className="flex flex-wrap gap-3 sm:flex-row">
-              <a
-                href="https://github.com/2xBuild/drawi.ai"
-                className="cursor-pointer rounded-full bg-foreground px-6 py-3 text-base font-eunjin text-background transition hover:opacity-90"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://x.com/iBuild"
-                className="cursor-pointer rounded-full border border-foreground px-6 py-3 text-base font-eunjin text-foreground transition hover:bg-foreground/10"
-              >
-                Twitter/X
-              </a>
-            </div>
-          </div>
-        </div>
+    <motion.div
+      className="relative min-h-screen bg-background flex flex-col overflow-x-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      {/* Subtle dot pattern background */}
+      <DotPattern
+        className={cn(
+          "fixed inset-0 -z-30 opacity-30 dark:opacity-20",
+          "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+        )}
+        width={24}
+        height={24}
+        cr={1}
+      />
+
+      {/* Main content */}
+      <main className="flex w-full flex-col items-center flex-1">
+        <Hero />
+        <Features />
       </main>
-    </div>
+      
+      <Footer />
+    </motion.div>
   );
 }
