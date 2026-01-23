@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import { SwitchBar } from './components/switch_bar'
-import CurrentRouteName from './components/currentRoute'
+// import CurrentRouteName from './components/currentRoute'
 import RoutesComponent from './routes'
 
 
@@ -17,10 +17,13 @@ function AppContent() {
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <AppContent />
     </BrowserRouter>
+    </>
   )
 }
+
 
 export default App

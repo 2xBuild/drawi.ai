@@ -1,7 +1,11 @@
+import { Excalidraw } from "@excalidraw/excalidraw"
+import "@excalidraw/excalidraw/index.css";
+
+
 export default function DrawPage() {
   return (
-    <div>
-      <h1>Draw hai bhai</h1>
+    <div style={{ width: "100vw", height: "100vh" }}>
+      <Excalidraw />
     </div>
   )
 }
