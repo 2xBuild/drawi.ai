@@ -18,7 +18,7 @@ export default function Home() {
               Coming soon
             </span>
             <h1 className="text-2xl font-eunjin text-foreground md:text-5xl">
-              a next-gen ai-powered whiteboard with everything you need.
+              a next-gen ai-powered whiteboard.
             </h1>
             <div className="flex flex-wrap gap-3 sm:flex-row">
               <a
