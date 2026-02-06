@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drawi.ai — Pitch Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Eunjin:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Eunjin', -apple-system, sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.75;
+    padding: 80px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media print {
+    body { padding: 40px; }
+    .page-break { page-break-before: always; }
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  h1 {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-number {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 18px;
+    letter-spacing: -0.2px;
+  }
+
+  p {
+    font-size: 0.92rem;
+    color: #333;
+    margin-bottom: 14px;
+  }
+
+  /* Lists */
+  ol.problems {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: problem;
+  }
+
+  ol.problems li {
+    font-size: 0.92rem;
+    color: #333;
+    padding: 12px 0 12px 32px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    counter-increment: problem;
+  }
+
+  ol.problems li:last-child {
+    border-bottom: none;
+  }
+
+  ol.problems li::before {
+    content: counter(problem) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  ul.features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.features li {
+    font-size: 0.92rem;
+    color: #333;
+
+    position: relative;
+  }
+
+  ul.features li::before {
+    content: '\2013';
+    position: absolute;
+    left: 0;
+    color: #aaa;
+  }
+
+  /* Sub-headings */
+  .sub-heading {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  /* Dividers */
+  .divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 48px 0;
+  }
+
+  .divider-heavy {
+    border: none;
+    border-top: 2px solid #1a1a1a;
+    margin: 48px 0;
+  }
+
+  /* Inline labels */
+  .label {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* Callout */
+  .callout {
+    background: #f7f7f7;
+    border-left: 3px solid #1a1a1a;
+    padding: 14px 18px;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .callout strong {
+    color: #1a1a1a;
+  }
+
+  /* Pricing table */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 8px;
+  }
+
+  .pricing-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #1a1a1a;
+    padding: 10px 0;
+    border-bottom: 2px solid #1a1a1a;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .pricing-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    vertical-align: top;
+  }
+
+  .pricing-table td:first-child {
+    font-weight: 600;
+    color: #1a1a1a;
+    width: 100px;
+  }
+
+  .pricing-table td:nth-child(2) {
+    width: 100px;
+    color: #555;
+  }
+
+  .pricing-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Phases */
+  .phase {
+    margin-bottom: 20px;
+  }
+
+  .phase-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .phase-desc {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* Closing */
+  .closing {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 2px solid #1a1a1a;
+  }
+
+  .closing p {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    letter-spacing: -0.2px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Drawi.ai</h1>
+    <p class="tagline">An AI-powered canvas platform. A collaborative whiteboard built for live teaching, and an AI drawing studio built for artists and creators.</p>
+  </div>
+
+  <!-- PROBLEM A -->
+  <div class="section">
+    <div class="section-number">01 &mdash; Problem</div>
+    <h2>Teaching &amp; Collaboration is Broken</h2>
+    <ol class="problems">
+      <li>Teachers use Zoom for video, Excalidraw or Miro for drawing, Google Docs for notes, and Slido for polls. These tools don't talk to each other. Switching between them during a live session breaks the flow.</li>
+      <li>Excalidraw and most whiteboards give you one infinite canvas with no pages, no folders, and no way to organize content across sessions. After a class ends, everything sits in one flat, unsorted space.</li>
+      <li>There is no whiteboard with a broadcasting model. There is no way where multiple teachers can draw while students watch and interact without full edit permissions.</li>
+      <li>Live sessions produce no automatic output. Teachers manually write notes or record screens. There is no tool that generates structured notes from what was drawn and discussed on a whiteboard.</li>
+      <li>No single product combines a sketch-style whiteboard with live video, chat, polls, and controlled access in one interface. Educators currently need a minimum of three separate apps to run a visual class.</li>
+    </ol>
+  </div>
+
+  <!-- PROBLEM B -->
+  <div class="section">
+    <div class="section-number">02 &mdash; Problem</div>
+    <h2>Artists Have No AI Drawing Tool</h2>
+    <ol class="problems">
+      <li>Midjourney, DALL-E, and Stable Diffusion generate photorealistic images and digital renders. None of them output hand-drawn sketches, cartoon-style art, or pencil illustrations.</li>
+      <li>Every AI image tool is a prompt-in, file-out system. You type a prompt, get a PNG. There is no AI tool that works inside a canvas where you are actively drawing and building a composition.</li>
+      <li>Sketch and cartoon artists have no AI assistance for their workflow. A comic artist drawing panels, a meme creator making illustrations, or a designer sketching concepts. none of them have an AI tool built for how they work.</li>
+      <li>AI features in existing whiteboard tools like Miro and FigJam are limited to auto-layouts, sticky note clustering, and mindmap generation. These rearrange text, they do not draw anything.</li>
+      <li>There is no product where you can type a prompt and get a sketch-style drawing rendered directly onto your canvas that you can then edit, refine, and build on with your own strokes.</li>
+    </ol>
+  </div>
+
+  <hr class="divider-heavy">
+
+  <!-- SOLUTION -->
+  <div class="section">
+    <div class="section-number">03 &mdash; Solution</div>
+    <h2 style="padding-bottom: 0px; margin-bottom: 0px;">Drawi.ai</h2>
+    <p>Built on Excalidraw's sketch-style engine, extended in two directions.</p>
+
+    <div class="sub-heading">For Educators and Teams</div>
+    <ul class="features">
+      <li>+ Broadcasting mode. Teacher draws live, students watch with audio and video.</li>
+      <li>+ Live collaboration for approved users. View-only for everyone else.</li>
+      <li>+ Built-in chat room and polls alongside the canvas.</li>
+      <li>+ AI-generated notes from sessions.</li>
+      <li>+ Screen sharing within the app.</li>
+      <li>+ Unique invite links. One-time-use or restricted to specific emails.</li>
+      <li>+ Import any PDF, image, or local file and draw over it.</li>
+    </ul>
+
+    <div class="sub-heading">For Artists and Creators</div>
+    <ul class="features">
+      <li>Text-to-sketch. Generate hand-drawn sketches from prompts.</li>
+      <li>Cartoons, memes, illustrations from text &mdash; directly on the canvas.</li>
+      <li>AI draws on your canvas, not in a separate window. You prompt, it draws, you refine.</li>
+    
+    </ul>
+
+    <div class="sub-heading">Shared Foundation</div>
+    <ul class="features">
+      <li>Folder, project, canvas, pages hierarchy. One folder per project, multiple canvases inside, unlimited pages per canvas, paginate by size.</li>
+      <li>In-house animation engine.</li>
+      <li>Export as PDF, image, .drawi file or video with full draw-sequence animation.</li>
+      <li>Cloud and local save.</li>
+      <li>All in one store for icons, illustrations, diagrams, and more by community.</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TARGET MARKETS -->
+  <div class="section">
+    <div class="section-number">04 &mdash; Target Markets</div>
+    <h2>Who This Is For</h2>
+    <p><span class="label">Education:</span> Online educators, course creators, corporate trainers. These people teach visually and live. No tool gives them whiteboard plus broadcasting plus chat plus polls plus AI notes in one place.</p>
+    <p><span class="label">Creative:</span> Cartoon and comic artists, meme creators, designers, illustrators, content creators. No AI tool draws in sketch style on a canvas.</p>
+
+    <p><span class="label">Builders</span> Design and Build architectures, diagrams, and more. Collaborate with your team in real time.</p>
+
+    <p><span class="label">Business:</span> Business owners, entrepreneurs, and small teams.</p>
+    
+  </div>
+
+</div>
+</body>
+</html>
